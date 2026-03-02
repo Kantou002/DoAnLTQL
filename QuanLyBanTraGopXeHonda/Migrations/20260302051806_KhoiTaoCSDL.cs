@@ -80,12 +80,8 @@ namespace QuanLyBanTraGopXeHonda.Migrations
                     TenXe = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HangXeID = table.Column<int>(type: "int", nullable: false),
                     LoaiXeID = table.Column<int>(type: "int", nullable: false),
-                    MauSac = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SoKhung = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SoMay = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
-                    NamSanXuat = table.Column<int>(type: "int", nullable: false),
                     HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
