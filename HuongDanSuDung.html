@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng Dẫn Sử Dụng – Quản Lý Bán Trả Góp Xe Honda</title>
+  <style>
+    :root {
+      --primary: #c8102e;
+      --dark:    #1a1a2e;
+      --accent:  #e8f4fd;
+      --border:  #dde3ea;
+      --text:    #2d3748;
+      --light:   #f7fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--dark);
+      color: #fff;
+      padding: 0;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 24px;
+    }
+    .logo-circle {
+      width: 56px; height: 56px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 900; color: #fff;
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 1.35rem; font-weight: 700; }
+    header p  { font-size: .85rem; opacity: .7; margin-top: 2px; }
+    .badge {
+      margin-left: auto;
+      background: var(--primary);
+      color: #fff;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: .78rem;
+      white-space: nowrap;
+    }
+
+    /* ── Nav ── */
+    nav {
+      background: var(--primary);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav ul {
+      max-width: 1100px; margin: auto;
+      display: flex; list-style: none;
+      padding: 0 16px;
+    }
+    nav a {
+      display: block;
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      padding: 13px 18px;
+      font-size: .88rem;
+      font-weight: 500;
+      transition: background .2s, color .2s;
+    }
+    nav a:hover { background: rgba(0,0,0,.2); color: #fff; }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: auto; padding: 32px 24px 64px; }
+
+    /* ── Section title ── */
+    .section-title {
+      display: flex; align-items: center; gap: 12px;
+      margin: 40px 0 20px;
+    }
+    .section-title .icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .section-title h2 { font-size: 1.25rem; color: var(--dark); }
+
+    /* ── Cards grid ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 20px; }
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .card h3 { font-size: 1rem; color: var(--primary); margin-bottom: 10px; }
+    .card ul { padding-left: 18px; }
+    .card li { margin-bottom: 6px; font-size: .92rem; }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .9rem; flex-shrink: 0;
+    }
+    .step h4 { font-size: .95rem; margin-bottom: 4px; color: var(--dark); }
+    .step p  { font-size: .88rem; color: #555; }
+
+    /* ── Table ── */
+    table {
+      width: 100%; border-collapse: collapse;
+      background: #fff; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    thead { background: var(--primary); color: #fff; }
+    th, td { padding: 12px 16px; text-align: left; font-size: .9rem; }
+    tbody tr:nth-child(even) { background: var(--accent); }
+    tbody tr:hover { background: #fde8ec; }
+
+    /* ── Info box ── */
+    .info-box {
+      background: var(--accent);
+      border: 1px solid #bee3f8;
+      border-left: 4px solid #3182ce;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: .9rem;
+      margin-top: 16px;
+    }
+    .info-box strong { color: #2b6cb0; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 22px;
+      font-size: .82rem;
+    }
+    footer strong { color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="header-inner">
+    <div class="logo-circle">H</div>
+    <div>
+      <h1>Phần Mềm Quản Lý Bán Trả Góp Xe Honda</h1>
+      <p>Tài liệu hướng dẫn sử dụng dành cho người dùng cuối</p>
+    </div>
+    <span class="badge">Phiên bản 1.0</span>
+  </div>
+</header>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <ul>
+    <li><a href="#tongquan">Tổng quan</a></li>
+    <li><a href="#dangnhap">Đăng nhập</a></li>
+    <li><a href="#quanly">Quản lý</a></li>
+    <li><a href="#hopdong">Hợp đồng</a></li>
+    <li><a href="#baocao">Báo cáo</a></li>
+    <li><a href="#phimtat">Phím tắt</a></li>
+    <li><a href="#lienhe">Liên hệ</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<main class="container">
+
+  <!-- Tổng quan -->
+  <section id="tongquan">
+    <div class="section-title">
+      <div class="icon">📋</div>
+      <h2>Tổng Quan Phần Mềm</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>🎯 Mục đích</h3>
+        <ul>
+          <li>Quản lý danh mục xe Honda (loại, hãng, mẫu xe)</li>
+          <li>Quản lý khách hàng mua trả góp</li>
+          <li>Lập và theo dõi hợp đồng trả góp</li>
+          <li>Thống kê doanh thu theo thời gian</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>👥 Đối tượng sử dụng</h3>
+        <ul>
+          <li><strong>Quản lý:</strong> Toàn quyền truy cập tất cả chức năng</li>
+          <li><strong>Nhân viên:</strong> Quản lý khách hàng, hợp đồng và xem báo cáo</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🖥️ Yêu cầu hệ thống</h3>
+        <ul>
+          <li>Windows 10/11 (64-bit)</li>
+          <li>.NET 9.0 Runtime trở lên</li>
+          <li>SQL Server hoặc SQL Server Express</li>
+          <li>RAM tối thiểu: 4 GB</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Đăng nhập -->
+  <section id="dangnhap">
+    <div class="section-title">
+      <div class="icon">🔐</div>
+      <h2>Đăng Nhập Hệ Thống</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Khởi động phần mềm</h4>
+          <p>Mở file <strong>QuanLyBanTraGopXeHonda.exe</strong>. Hộp thoại đăng nhập sẽ xuất hiện tự động.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Nhập thông tin đăng nhập</h4>
+          <p>Điền <strong>Tên đăng nhập</strong> và <strong>Mật khẩu</strong> được cấp bởi quản trị viên. Nhấn <kbd>Enter</kbd> hoặc nút <strong>Đăng nhập</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Xác nhận quyền hạn</h4>
+          <p>Sau khi đăng nhập thành công, thanh trạng thái bên dưới hiển thị vai trò (<em>Quản lý</em> hoặc <em>Nhân viên</em>) và tên người dùng.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Đăng xuất</h4>
+          <p>Vào menu <strong>Hệ thống → Đăng xuất</strong> để kết thúc phiên làm việc. Tất cả cửa sổ con sẽ được đóng tự động.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quản lý danh mục -->
+  <section id="quanly">
+    <div class="section-title">
+      <div class="icon">🗂️</div>
+      <h2>Quản Lý Danh Mục</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>🏷️ Loại Xe</h3>
+        <ul>
+          <li><strong>Thêm:</strong> Nhấn <em>Thêm</em>, nhập tên loại xe, nhấn <em>Lưu</em></li>
+          <li><strong>Sửa:</strong> Chọn dòng trên lưới, nhấn <em>Sửa</em>, chỉnh sửa rồi <em>Lưu</em></li>
+          <li><strong>Xóa:</strong> Chọn dòng, nhấn <em>Xóa</em> (chỉ xóa được khi không có xe thuộc loại này)</li>
+          <li><strong>Xuất Excel:</strong> Nhấn nút <em>Xuất</em> để lưu danh sách ra file .xlsx</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🏢 Hãng Xe</h3>
+        <ul>
+          <li>Thao tác tương tự Loại Xe</li>
+          <li>Mỗi hãng xe thuộc về một loại xe cụ thể</li>
+          <li>Có thể nhập dữ liệu hàng loạt từ file Excel bằng nút <em>Nhập</em></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🛵 Xe (Mẫu xe)</h3>
+        <ul>
+          <li>Quản lý chi tiết từng mẫu xe: tên, hãng, giá bán, màu sắc, mô tả</li>
+          <li>Hỗ trợ đính kèm hình ảnh xe</li>
+          <li>Tìm kiếm theo tên hoặc hãng xe</li>
+          <li>Nhập/Xuất dữ liệu với Excel</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>👤 Khách Hàng</h3>
+        <ul>
+          <li>Lưu đầy đủ: họ tên, CCCD, địa chỉ, điện thoại</li>
+          <li>Tìm kiếm nhanh theo tên hoặc CCCD</li>
+          <li>Xem lịch sử hợp đồng của từng khách</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🧑‍💼 Nhân Viên</h3>
+        <ul>
+          <li>Chỉ tài khoản <strong>Quản lý</strong> mới có quyền truy cập</li>
+          <li>Quản lý tài khoản đăng nhập và quyền hạn</li>
+          <li>Đặt lại mật khẩu nhân viên khi cần</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hợp đồng -->
+  <section id="hopdong">
+    <div class="section-title">
+      <div class="icon">📄</div>
+      <h2>Quản Lý Hợp Đồng Trả Góp</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Tạo hợp đồng mới</h4>
+          <p>Vào <strong>Quản lý → Hợp đồng</strong>, nhấn <em>Thêm</em>. Chọn khách hàng và nhân viên phụ trách.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Thêm chi tiết xe</h4>
+          <p>Trong tab <strong>Chi tiết</strong>, chọn mẫu xe, số lượng, giá bán. Hệ thống tự tính tổng tiền và các kỳ góp.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Xác nhận và lưu</h4>
+          <p>Kiểm tra lại thông tin, nhấn <em>Lưu</em>. Hợp đồng sẽ được lưu vào cơ sở dữ liệu.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4>In hợp đồng</h4>
+          <p>Chọn hợp đồng, nhấn nút <em>In hợp đồng</em> để xuất file PDF hoặc in trực tiếp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Báo cáo -->
+  <section id="baocao">
+    <div class="section-title">
+      <div class="icon">📊</div>
+      <h2>Báo Cáo & Thống Kê</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>📈 Thống kê xe</h3>
+        <ul>
+          <li>Xem tổng số xe theo từng loại, hãng</li>
+          <li>Lọc theo khoảng thời gian</li>
+          <li>Biểu đồ trực quan theo hãng xe</li>
+          <li>Xuất báo cáo ra file Excel hoặc PDF</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>💰 Thống kê doanh thu</h3>
+        <ul>
+          <li>Tổng doanh thu theo tháng/năm</li>
+          <li>Phân tích theo nhân viên phụ trách</li>
+          <li>So sánh doanh thu giữa các kỳ</li>
+          <li>In báo cáo doanh thu chi tiết</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <strong>💡 Mẹo:</strong> Nhấn <kbd>F5</kbd> để làm mới dữ liệu trên màn hình báo cáo.
+      Định dạng ngày tháng sử dụng chuẩn <strong>dd/MM/yyyy</strong>.
+    </div>
+  </section>
+
+  <!-- Phím tắt -->
+  <section id="phimtat">
+    <div class="section-title">
+      <div class="icon">⌨️</div>
+      <h2>Phím Tắt Thường Dùng</h2>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Phím tắt</th><th>Chức năng</th><th>Màn hình áp dụng</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><kbd>Ctrl+F1</kbd></td><td>Mở hướng dẫn sử dụng</td><td>Tất cả</td></tr>
+        <tr><td><kbd>F1</kbd></td><td>Trợ giúp ngữ cảnh</td><td>Tất cả các form</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>Xác nhận / Đăng nhập</td><td>Đăng nhập</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Hủy bỏ thao tác hiện tại</td><td>Tất cả form quản lý</td></tr>
+        <tr><td><kbd>F5</kbd></td><td>Làm mới dữ liệu</td><td>Báo cáo, Thống kê</td></tr>
+        <tr><td><kbd>Ctrl+P</kbd></td><td>In báo cáo / hợp đồng</td><td>Hợp đồng, Báo cáo</td></tr>
+        <tr><td><kbd>Delete</kbd></td><td>Xóa bản ghi đang chọn</td><td>Tất cả form quản lý</td></tr>
+        <tr><td><kbd>Alt+F4</kbd></td><td>Đóng cửa sổ hiện tại</td><td>Tất cả</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Liên hệ -->
+  <section id="lienhe">
+    <div class="section-title">
+      <div class="icon">📞</div>
+      <h2>Liên Hệ Hỗ Trợ</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>🏫 Đơn vị phát triển</h3>
+        <ul>
+          <li>Khoa Công nghệ Thông tin</li>
+          <li>Trường Đại học An Giang</li>
+          <li>Website: <a href="https://fit.agu.edu.vn" target="_blank">fit.agu.edu.vn</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🐛 Báo lỗi / Góp ý</h3>
+        <ul>
+          <li>Liên hệ giảng viên phụ trách môn học</li>
+          <li>Gửi issue trên GitHub repository của dự án</li>
+          <li>Phiên bản: <strong>1.0</strong> – IMS501</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p>© 2025 <strong>Khoa CNTT – Đại học An Giang</strong> &nbsp;|&nbsp; Phần mềm Quản Lý Bán Trả Góp Xe Honda &nbsp;|&nbsp; Phiên bản 1.0</p>
+</footer>
+
+</body>
+</html>
