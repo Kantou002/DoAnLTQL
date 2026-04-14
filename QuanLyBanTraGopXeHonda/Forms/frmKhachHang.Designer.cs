@@ -104,12 +104,14 @@
             // 
             // btnXuat
             // 
+            btnXuat.ForeColor = Color.Maroon;
             btnXuat.Location = new Point(701, 96);
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(94, 29);
             btnXuat.TabIndex = 12;
             btnXuat.Text = "Xuất";
             btnXuat.UseVisualStyleBackColor = true;
+            btnXuat.Click += btnXuat_Click;
             // 
             // btnNhap
             // 
@@ -120,6 +122,7 @@
             btnNhap.TabIndex = 11;
             btnNhap.Text = "Nhập";
             btnNhap.UseVisualStyleBackColor = true;
+            btnNhap.Click += btnNhap_Click;
             // 
             // btnTimKiem
             // 
@@ -133,13 +136,14 @@
             // 
             // btnThoat
             // 
-            btnThoat.ForeColor = Color.FromArgb(64, 64, 64);
+            btnThoat.ForeColor = Color.FromArgb(192, 0, 0);
             btnThoat.Location = new Point(601, 96);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 9;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnHuyBo
             // 
@@ -316,6 +320,7 @@
             Name = "KhachHang";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmKhachHang";
+            Load += frmKhachHang_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();

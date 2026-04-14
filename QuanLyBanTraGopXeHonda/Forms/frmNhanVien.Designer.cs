@@ -69,6 +69,7 @@
             // 
             // btnThem
             // 
+            btnThem.ForeColor = Color.Blue;
             btnThem.Location = new Point(676, 26);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(94, 29);
@@ -79,7 +80,8 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(675, 61);
+            btnSua.ForeColor = Color.Goldenrod;
+            btnSua.Location = new Point(676, 96);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(94, 29);
             btnSua.TabIndex = 1;
@@ -89,16 +91,18 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(676, 96);
+            btnXoa.ForeColor = Color.Red;
+            btnXoa.Location = new Point(676, 61);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(94, 29);
             btnXoa.TabIndex = 2;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnSua_Click;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnLuu
             // 
+            btnLuu.ForeColor = Color.FromArgb(0, 192, 0);
             btnLuu.Location = new Point(776, 26);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(94, 29);
@@ -109,6 +113,7 @@
             // 
             // btnHuyBo
             // 
+            btnHuyBo.ForeColor = Color.FromArgb(255, 128, 0);
             btnHuyBo.Location = new Point(776, 61);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(94, 29);
@@ -119,15 +124,18 @@
             // 
             // btnThoat
             // 
+            btnThoat.ForeColor = Color.FromArgb(192, 0, 0);
             btnThoat.Location = new Point(776, 96);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 5;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnTimKiem
             // 
+            btnTimKiem.ForeColor = Color.FromArgb(0, 192, 192);
             btnTimKiem.Location = new Point(876, 26);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(94, 29);
@@ -137,26 +145,31 @@
             // 
             // btnNhap
             // 
+            btnNhap.ForeColor = Color.Purple;
             btnNhap.Location = new Point(876, 61);
             btnNhap.Name = "btnNhap";
             btnNhap.Size = new Size(94, 29);
             btnNhap.TabIndex = 7;
             btnNhap.Text = "Nhập...";
             btnNhap.UseVisualStyleBackColor = true;
+            btnNhap.Click += btnNhap_Click;
             // 
             // btnXuat
             // 
+            btnXuat.ForeColor = Color.FromArgb(192, 64, 0);
             btnXuat.Location = new Point(876, 96);
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(94, 29);
             btnXuat.TabIndex = 8;
             btnXuat.Text = "Xuất...";
             btnXuat.UseVisualStyleBackColor = true;
+            btnXuat.Click += btnXuat_Click;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ControlLight;
             groupBox1.Controls.Add(cboQuyenHan);
+            groupBox1.Controls.Add(btnSua);
             groupBox1.Controls.Add(txtMatKhau);
             groupBox1.Controls.Add(txtTenDangNhap);
             groupBox1.Controls.Add(txtDiaChi);
@@ -169,7 +182,6 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(btnXuat);
-            groupBox1.Controls.Add(btnSua);
             groupBox1.Controls.Add(btnNhap);
             groupBox1.Controls.Add(btnThem);
             groupBox1.Controls.Add(btnThoat);
@@ -297,6 +309,8 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -306,6 +320,7 @@
             dataGridView1.Location = new Point(3, 23);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(979, 296);
@@ -318,6 +333,7 @@
             iDDataGridViewTextBoxColumn.HeaderText = "ID";
             iDDataGridViewTextBoxColumn.MinimumWidth = 6;
             iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // hoVaTenDataGridViewTextBoxColumn
             // 
@@ -325,6 +341,7 @@
             hoVaTenDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
             hoVaTenDataGridViewTextBoxColumn.MinimumWidth = 6;
             hoVaTenDataGridViewTextBoxColumn.Name = "hoVaTenDataGridViewTextBoxColumn";
+            hoVaTenDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dienThoaiDataGridViewTextBoxColumn
             // 
@@ -332,6 +349,7 @@
             dienThoaiDataGridViewTextBoxColumn.HeaderText = "Điện thoại";
             dienThoaiDataGridViewTextBoxColumn.MinimumWidth = 6;
             dienThoaiDataGridViewTextBoxColumn.Name = "dienThoaiDataGridViewTextBoxColumn";
+            dienThoaiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // diaChiDataGridViewTextBoxColumn
             // 
@@ -339,6 +357,7 @@
             diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
             diaChiDataGridViewTextBoxColumn.MinimumWidth = 6;
             diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
+            diaChiDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tenDangNhapDataGridViewTextBoxColumn
             // 
@@ -346,6 +365,7 @@
             tenDangNhapDataGridViewTextBoxColumn.HeaderText = "Tên đăng nhập";
             tenDangNhapDataGridViewTextBoxColumn.MinimumWidth = 6;
             tenDangNhapDataGridViewTextBoxColumn.Name = "tenDangNhapDataGridViewTextBoxColumn";
+            tenDangNhapDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // matKhauDataGridViewTextBoxColumn
             // 
@@ -353,6 +373,7 @@
             matKhauDataGridViewTextBoxColumn.HeaderText = "MatKhau";
             matKhauDataGridViewTextBoxColumn.MinimumWidth = 6;
             matKhauDataGridViewTextBoxColumn.Name = "matKhauDataGridViewTextBoxColumn";
+            matKhauDataGridViewTextBoxColumn.ReadOnly = true;
             matKhauDataGridViewTextBoxColumn.Visible = false;
             // 
             // quyenHanDataGridViewCheckBoxColumn
@@ -361,6 +382,7 @@
             quyenHanDataGridViewCheckBoxColumn.HeaderText = "Quyền hạn";
             quyenHanDataGridViewCheckBoxColumn.MinimumWidth = 6;
             quyenHanDataGridViewCheckBoxColumn.Name = "quyenHanDataGridViewCheckBoxColumn";
+            quyenHanDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // nhanVienBindingSource
             // 
@@ -376,6 +398,7 @@
             Name = "frmNhanVien";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmNhanVien";
+            Activated += frmNhanVien_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -410,6 +433,7 @@
         private TextBox txtDiaChi;
         private TextBox txtDienThoai;
         private TextBox txtHoVaTen;
+        private ComboBox cboQuyenHan;
         private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn hoVaTenDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dienThoaiDataGridViewTextBoxColumn;
@@ -417,6 +441,5 @@
         private DataGridViewTextBoxColumn tenDangNhapDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn matKhauDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn quyenHanDataGridViewCheckBoxColumn;
-        private ComboBox cboQuyenHan;
     }
 }

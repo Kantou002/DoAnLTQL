@@ -36,6 +36,8 @@
             btnLuu = new Button();
             btnSua = new Button();
             btnThem = new Button();
+            btnNhap = new Button();
+            btnXuat = new Button();
             txtTenLoai = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
@@ -59,6 +61,8 @@
             groupBox1.Controls.Add(btnLuu);
             groupBox1.Controls.Add(btnSua);
             groupBox1.Controls.Add(btnThem);
+            groupBox1.Controls.Add(btnNhap);
+            groupBox1.Controls.Add(btnXuat);
             groupBox1.Controls.Add(txtTenLoai);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(0, 12);
@@ -71,18 +75,19 @@
             // btnThoat
             // 
             btnThoat.ForeColor = Color.Red;
-            btnThoat.Location = new Point(691, 77);
+            btnThoat.Location = new Point(511, 77);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(94, 29);
+            btnThoat.Size = new Size(83, 29);
             btnThoat.TabIndex = 7;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(580, 77);
+            btnHuyBo.Location = new Point(411, 77);
             btnHuyBo.Name = "btnHuyBo";
-            btnHuyBo.Size = new Size(94, 29);
+            btnHuyBo.Size = new Size(83, 29);
             btnHuyBo.TabIndex = 6;
             btnHuyBo.Text = "Hủy bỏ";
             btnHuyBo.UseVisualStyleBackColor = true;
@@ -91,9 +96,9 @@
             // btnXoa
             // 
             btnXoa.ForeColor = Color.Crimson;
-            btnXoa.Location = new Point(358, 77);
+            btnXoa.Location = new Point(211, 77);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(94, 29);
+            btnXoa.Size = new Size(83, 29);
             btnXoa.TabIndex = 4;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
@@ -102,9 +107,9 @@
             // btnLuu
             // 
             btnLuu.ForeColor = Color.DodgerBlue;
-            btnLuu.Location = new Point(469, 77);
+            btnLuu.Location = new Point(311, 77);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(94, 29);
+            btnLuu.Size = new Size(83, 29);
             btnLuu.TabIndex = 5;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
@@ -113,9 +118,9 @@
             // btnSua
             // 
             btnSua.ForeColor = Color.Black;
-            btnSua.Location = new Point(247, 77);
+            btnSua.Location = new Point(111, 77);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(94, 29);
+            btnSua.Size = new Size(83, 29);
             btnSua.TabIndex = 3;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
@@ -125,13 +130,34 @@
             // 
             btnThem.BackColor = SystemColors.ControlLightLight;
             btnThem.ForeColor = Color.LimeGreen;
-            btnThem.Location = new Point(136, 77);
+            btnThem.Location = new Point(11, 77);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(94, 29);
+            btnThem.Size = new Size(83, 29);
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
+            // 
+            // btnNhap
+            // 
+            btnNhap.ForeColor = Color.Purple;
+            btnNhap.Location = new Point(611, 77);
+            btnNhap.Name = "btnNhap";
+            btnNhap.Size = new Size(83, 29);
+            btnNhap.TabIndex = 8;
+            btnNhap.Text = "Nhập...";
+            btnNhap.UseVisualStyleBackColor = true;
+            btnNhap.Click += btnNhap_Click;
+            // 
+            // btnXuat
+            // 
+            btnXuat.Location = new Point(711, 77);
+            btnXuat.Name = "btnXuat";
+            btnXuat.Size = new Size(83, 29);
+            btnXuat.TabIndex = 9;
+            btnXuat.Text = "Xuất...";
+            btnXuat.UseVisualStyleBackColor = true;
+            btnXuat.Click += btnXuat_Click;
             // 
             // txtTenLoai
             // 
@@ -213,6 +239,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Loại xe";
             Activated += frmLoaiXe_Load;
+            Load += frmLoaiXe_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -234,6 +261,8 @@
         private Button btnThem;
         private TextBox txtTenLoai;
         private Button btnXoa;
+        private Button btnNhap;
+        private Button btnXuat;
         private BindingSource loaiXeBindingSource;
         private BindingSource hangXeBindingSource;
         private DataGridViewTextBoxColumn tenLXDataGridViewTextBoxColumn;

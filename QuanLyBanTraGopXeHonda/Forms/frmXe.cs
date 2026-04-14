@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyBanTraGopXeHonda.Data;
+using ClosedXML.Excel;
 
 namespace QuanLyBanTraGopXeHonda.Forms
 {
@@ -22,10 +23,7 @@ namespace QuanLyBanTraGopXeHonda.Forms
                 .Replace("bin\\Release\\net9.0-windows\\", ""),
             "Images");
 
-        public frmXe()
-        {
-            InitializeComponent();
-        }
+        public frmXe() { InitializeComponent(); }
 
         private void BatTatChucNang(bool giaTri)
         {
@@ -39,7 +37,6 @@ namespace QuanLyBanTraGopXeHonda.Forms
             txtMoTa.Enabled = giaTri;
             picHinhAnh.Enabled = giaTri;
             btnDoiAnh.Enabled = giaTri;
-
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
@@ -83,29 +80,24 @@ namespace QuanLyBanTraGopXeHonda.Forms
                 MoTa = r.MoTa
             }).ToList();
 
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = dsXe;
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dsXe;
 
             cboPhanLoai.DataBindings.Clear();
-            cboPhanLoai.DataBindings.Add("SelectedValue", bindingSource, "LoaiXeID", false, DataSourceUpdateMode.Never);
-
+            cboPhanLoai.DataBindings.Add("SelectedValue", bs, "LoaiXeID", false, DataSourceUpdateMode.Never);
             cboHangXe.DataBindings.Clear();
-            cboHangXe.DataBindings.Add("SelectedValue", bindingSource, "HangXeID", false, DataSourceUpdateMode.Never);
-
+            cboHangXe.DataBindings.Add("SelectedValue", bs, "HangXeID", false, DataSourceUpdateMode.Never);
             txtTenXe.DataBindings.Clear();
-            txtTenXe.DataBindings.Add("Text", bindingSource, "TenXe", false, DataSourceUpdateMode.Never);
-
+            txtTenXe.DataBindings.Add("Text", bs, "TenXe", false, DataSourceUpdateMode.Never);
             txtMoTa.DataBindings.Clear();
-            txtMoTa.DataBindings.Add("Text", bindingSource, "MoTa", false, DataSourceUpdateMode.Never);
-
+            txtMoTa.DataBindings.Add("Text", bs, "MoTa", false, DataSourceUpdateMode.Never);
             numSoLuong.DataBindings.Clear();
-            numSoLuong.DataBindings.Add("Value", bindingSource, "SoLuong", false, DataSourceUpdateMode.Never);
-
+            numSoLuong.DataBindings.Add("Value", bs, "SoLuong", false, DataSourceUpdateMode.Never);
             numGiaBan.DataBindings.Clear();
-            numGiaBan.DataBindings.Add("Value", bindingSource, "GiaBan", false, DataSourceUpdateMode.Never);
+            numGiaBan.DataBindings.Add("Value", bs, "GiaBan", false, DataSourceUpdateMode.Never);
 
             picHinhAnh.DataBindings.Clear();
-            Binding hinhAnh = new Binding("ImageLocation", bindingSource, "HinhAnh");
+            Binding hinhAnh = new Binding("ImageLocation", bs, "HinhAnh");
             hinhAnh.Format += (s, ev) =>
             {
                 if (ev.Value is string fileName && !string.IsNullOrEmpty(fileName))
@@ -114,8 +106,7 @@ namespace QuanLyBanTraGopXeHonda.Forms
                     ev.Value = null;
             };
             picHinhAnh.DataBindings.Add(hinhAnh);
-
-            dataGridView1.DataSource = bindingSource;
+            dataGridView1.DataSource = bs;
         }
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -131,15 +122,9 @@ namespace QuanLyBanTraGopXeHonda.Forms
                         image = new Bitmap(image, 24, 24);
                         e.Value = image;
                     }
-                    else
-                    {
-                        e.Value = null;
-                    }
+                    else e.Value = null;
                 }
-                else
-                {
-                    e.Value = null;
-                }
+                else e.Value = null;
             }
         }
 
@@ -161,7 +146,7 @@ namespace QuanLyBanTraGopXeHonda.Forms
         {
             if (dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("Vui long chon mot xe de sua.", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn một xe để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             xuLyThem = false;
@@ -172,15 +157,15 @@ namespace QuanLyBanTraGopXeHonda.Forms
         private void btnLuu_Click(object sender, EventArgs e)
         {
             if (cboPhanLoai.SelectedValue == null || string.IsNullOrWhiteSpace(cboPhanLoai.Text))
-                MessageBox.Show("Vui long chon loai xe.", "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn loại xe.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (cboHangXe.SelectedValue == null || string.IsNullOrWhiteSpace(cboHangXe.Text))
-                MessageBox.Show("Vui long chon hang xe.", "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn hãng xe.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (string.IsNullOrWhiteSpace(txtTenXe.Text))
-                MessageBox.Show("Vui long nhap ten xe.", "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập tên xe.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (numSoLuong.Value <= 0)
-                MessageBox.Show("So luong phai lon hon 0.", "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Số lượng phải lớn hơn 0.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (numGiaBan.Value <= 0)
-                MessageBox.Show("Gia ban phai lon hon 0.", "Loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giá bán phải lớn hơn 0.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 if (xuLyThem)
@@ -192,9 +177,7 @@ namespace QuanLyBanTraGopXeHonda.Forms
                         LoaiXeID = (int)cboPhanLoai.SelectedValue,
                         SoLuong = (int)numSoLuong.Value,
                         GiaBan = numGiaBan.Value,
-                        HinhAnh = picHinhAnh.ImageLocation != null
-                            ? Path.GetFileName(picHinhAnh.ImageLocation)
-                            : null,
+                        HinhAnh = picHinhAnh.ImageLocation != null ? Path.GetFileName(picHinhAnh.ImageLocation) : null,
                         MoTa = txtMoTa.Text.Trim()
                     };
                     context.Xes.Add(xe);
@@ -223,55 +206,38 @@ namespace QuanLyBanTraGopXeHonda.Forms
         {
             if (dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("Vui long chon mot xe de xoa.", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn một xe để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             string tenXe = txtTenXe.Text;
-            if (MessageBox.Show("Xac nhan xoa xe \"" + tenXe + "\"?", "Xoa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Xác nhận xóa xe \"" + tenXe + "\"?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
                 Xe? xe = context.Xes.Find(id);
-                if (xe != null)
-                {
-                    context.Xes.Remove(xe);
-                    context.SaveChanges();
-                }
+                if (xe != null) { context.Xes.Remove(xe); context.SaveChanges(); }
                 frmXe_Load(sender, e);
             }
         }
 
-        private void btnHuyBo_Click(object sender, EventArgs e)
-        {
-            frmXe_Load(sender, e);
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnHuyBo_Click(object sender, EventArgs e) => frmXe_Load(sender, e);
+        private void btnThoat_Click(object sender, EventArgs e) => this.Close();
 
         private void btnDoiAnh_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Cap nhat hinh anh xe";
-            openFileDialog.Filter = "Tap tin hinh anh|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-            openFileDialog.Multiselect = false;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Cập nhật hình ảnh xe";
+            ofd.Filter = "Tập tin hình ảnh|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            ofd.Multiselect = false;
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                string fileName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
-                string ext = Path.GetExtension(openFileDialog.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(ofd.FileName);
+                string ext = Path.GetExtension(ofd.FileName);
                 string savedFileName = fileName + ext;
                 string fileSavePath = Path.Combine(imagesFolder, savedFileName);
-
                 Directory.CreateDirectory(imagesFolder);
-                File.Copy(openFileDialog.FileName, fileSavePath, true);
-
+                File.Copy(ofd.FileName, fileSavePath, true);
                 if (xuLyThem)
-                {
                     picHinhAnh.ImageLocation = fileSavePath;
-                }
                 else if (dataGridView1.CurrentRow != null)
                 {
                     id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
@@ -289,17 +255,111 @@ namespace QuanLyBanTraGopXeHonda.Forms
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chuc nang tim kiem dang duoc phat trien.", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Chức năng tìm kiếm đang được phát triển.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnNhap_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chuc nang nhap dang duoc phat trien.", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Nhập dữ liệu từ tập tin Excel";
+            ofd.Filter = "Tập tin Excel|*.xls;*.xlsx";
+            ofd.Multiselect = false;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataTable table = new DataTable();
+                    using (XLWorkbook workbook = new XLWorkbook(ofd.FileName))
+                    {
+                        IXLWorksheet worksheet = workbook.Worksheet(1);
+                        bool firstRow = true;
+                        string readRange = "1:1";
+                        foreach (IXLRow row in worksheet.RowsUsed())
+                        {
+                            if (firstRow)
+                            {
+                                readRange = string.Format("{0}:{1}", 1, row.LastCellUsed().Address.ColumnNumber);
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                    table.Columns.Add(cell.Value.ToString());
+                                firstRow = false;
+                            }
+                            else
+                            {
+                                table.Rows.Add();
+                                int ci = 0;
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                    table.Rows[table.Rows.Count - 1][ci++] = cell.Value.ToString();
+                            }
+                        }
+                        if (table.Rows.Count > 0)
+                        {
+                            foreach (DataRow r in table.Rows)
+                            {
+                                Xe xe = new Xe
+                                {
+                                    TenXe = r["TenXe"].ToString()!,
+                                    HangXeID = int.Parse(r["HangXeID"].ToString()!),
+                                    LoaiXeID = int.Parse(r["LoaiXeID"].ToString()!),
+                                    GiaBan = decimal.Parse(r["GiaBan"].ToString()!),
+                                    SoLuong = int.Parse(r["SoLuong"].ToString()!),
+                                    HinhAnh = r.Table.Columns.Contains("HinhAnh") ? r["HinhAnh"].ToString() : null,
+                                    MoTa = r.Table.Columns.Contains("MoTa") ? r["MoTa"].ToString() : null
+                                };
+                                context.Xes.Add(xe);
+                            }
+                            context.SaveChanges();
+                            MessageBox.Show("Đã nhập thành công " + table.Rows.Count + " dòng.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmXe_Load(sender, e);
+                        }
+                        if (firstRow)
+                            MessageBox.Show("Tập tin Excel rỗng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+            }
         }
 
         private void btnXuat_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chuc nang xuat dang duoc phat trien.", "Thong bao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Xuất dữ liệu ra tập tin Excel";
+            sfd.Filter = "Tập tin Excel|*.xls;*.xlsx";
+            sfd.FileName = "Xe_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataTable table = new DataTable();
+                    table.Columns.AddRange(new DataColumn[] {
+                        new DataColumn("ID", typeof(int)),
+                        new DataColumn("TenXe", typeof(string)),
+                        new DataColumn("HangXeID", typeof(int)),
+                        new DataColumn("TenHX", typeof(string)),
+                        new DataColumn("LoaiXeID", typeof(int)),
+                        new DataColumn("TenLX", typeof(string)),
+                        new DataColumn("GiaBan", typeof(decimal)),
+                        new DataColumn("SoLuong", typeof(int)),
+                        new DataColumn("MoTa", typeof(string))
+                    });
+                    var dsXe = context.Xes.Select(r => new DanhSachXe
+                    {
+                        ID = r.ID, TenXe = r.TenXe,
+                        HangXeID = r.HangXeID, TenHX = r.HangXes.TenHX,
+                        LoaiXeID = r.LoaiXeID, TenLX = r.LoaiXes.TenLX,
+                        GiaBan = r.GiaBan, SoLuong = r.SoLuong, MoTa = r.MoTa
+                    }).ToList();
+                    foreach (var xe in dsXe)
+                        table.Rows.Add(xe.ID, xe.TenXe, xe.HangXeID, xe.TenHX, xe.LoaiXeID, xe.TenLX, xe.GiaBan, xe.SoLuong, xe.MoTa);
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var sheet = wb.Worksheets.Add(table, "Xe");
+                        sheet.Columns().AdjustToContents();
+                        wb.SaveAs(sfd.FileName);
+                        MessageBox.Show("Đã xuất dữ liệu ra tập tin Excel thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+            }
         }
     }
 }
