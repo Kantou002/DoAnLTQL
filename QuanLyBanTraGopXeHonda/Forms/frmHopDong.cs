@@ -92,7 +92,7 @@ namespace QuanLyBanTraGopXeHonda.Forms
                 return;
             }
             id = Convert.ToInt32(dataGridView.CurrentRow.Cells["ID"].Value.ToString());
-            using (Reports.frmInHopDong inHopDong = new Reports.frmInHopDong(id))
+            using (Reports.frmInHoaDon inHopDong = new Reports.frmInHoaDon(id))
             {
                 inHopDong.ShowDialog();
             }

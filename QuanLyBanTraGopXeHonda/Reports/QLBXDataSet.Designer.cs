@@ -1275,7 +1275,7 @@ namespace QuanLyBanTraGopXeHonda.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DanhSachHopDong_ChiTietRow AddDanhSachHopDong_ChiTietRow(int ID, int HopDongID, int XeID, string TenXe, System.DateTime NgayThanhToan, short SoThangThanhToan, int SoTienThanhToan, int ThanhTien) {
+            public DanhSachHopDong_ChiTietRow AddDanhSachHopDong_ChiTietRow(int ID, int HopDongID, int XeID, string TenXe, System.DateTime NgayThanhToan, short SoThangThanhToan, decimal SoTienThanhToan, decimal ThanhTien) {
                 DanhSachHopDong_ChiTietRow rowDanhSachHopDong_ChiTietRow = ((DanhSachHopDong_ChiTietRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -1340,9 +1340,9 @@ namespace QuanLyBanTraGopXeHonda.Reports {
                 base.Columns.Add(this.columnNgayThanhToan);
                 this.columnSoThangThanhToan = new global::System.Data.DataColumn("SoThangThanhToan", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSoThangThanhToan);
-                this.columnSoTienThanhToan = new global::System.Data.DataColumn("SoTienThanhToan", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnSoTienThanhToan = new global::System.Data.DataColumn("SoTienThanhToan", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSoTienThanhToan);
-                this.columnThanhTien = new global::System.Data.DataColumn("ThanhTien", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnThanhTien = new global::System.Data.DataColumn("ThanhTien", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnThanhTien);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
@@ -2139,10 +2139,10 @@ namespace QuanLyBanTraGopXeHonda.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int SoTienThanhToan {
+            public decimal SoTienThanhToan {
                 get {
                     try {
-                        return ((int)(this[this.tableDanhSachHopDong_ChiTiet.SoTienThanhToanColumn]));
+                        return ((decimal)(this[this.tableDanhSachHopDong_ChiTiet.SoTienThanhToanColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SoTienThanhToan\' in table \'DanhSachHopDong_ChiTiet\' is DBNu" +
@@ -2156,10 +2156,10 @@ namespace QuanLyBanTraGopXeHonda.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int ThanhTien {
+            public decimal ThanhTien {
                 get {
                     try {
-                        return ((int)(this[this.tableDanhSachHopDong_ChiTiet.ThanhTienColumn]));
+                        return ((decimal)(this[this.tableDanhSachHopDong_ChiTiet.ThanhTienColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ThanhTien\' in table \'DanhSachHopDong_ChiTiet\' is DBNull.", e);

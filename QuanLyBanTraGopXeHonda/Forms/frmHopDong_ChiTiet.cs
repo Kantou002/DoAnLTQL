@@ -78,8 +78,8 @@ namespace QuanLyBanTraGopXeHonda.Forms
                             TenXe = r.Xe.TenXe,
                             NgayThanhToan = r.NgayThanhToan,
                             SoThangThanhToan = r.SoThangThanhToan,
-                            SoTienThanhToan = r.SoTienThanhToan / r.SoThangThanhToan,
-                            ThanhTien = r.SoTienThanhToan
+                            SoTienThanhToan = r.SoTienThanhToan,
+                            ThanhTien = r.SoTienThanhToan * r.SoThangThanhToan 
                         }).ToList();
 
                     hopDongChiTiet = new BindingList<DanhSachHopDong_ChiTiet>(ct);

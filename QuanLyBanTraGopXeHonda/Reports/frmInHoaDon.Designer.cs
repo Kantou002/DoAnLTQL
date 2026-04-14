@@ -1,6 +1,6 @@
 ﻿namespace QuanLyBanTraGopXeHonda.Reports
 {
-    partial class frmInHopDong
+    partial class frmInHoaDon
     {
         /// <summary>
         /// Required designer variable.

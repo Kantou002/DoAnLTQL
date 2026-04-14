@@ -47,7 +47,6 @@
             ThanhTien = new DataGridViewTextBoxColumn();
             panelBottom = new Panel();
             btnLuuHopDong = new Button();
-            btnInHopDong = new Button();
             btnThoat = new Button();
             grpThongTinHopDong.SuspendLayout();
             grpThongTinChiTiet.SuspendLayout();
@@ -330,7 +329,6 @@
             // panelBottom
             // 
             panelBottom.Controls.Add(btnLuuHopDong);
-            panelBottom.Controls.Add(btnInHopDong);
             panelBottom.Controls.Add(btnThoat);
             panelBottom.Dock = DockStyle.Bottom;
             panelBottom.Location = new Point(0, 510);
@@ -340,7 +338,7 @@
             // 
             // btnLuuHopDong
             // 
-            btnLuuHopDong.Location = new Point(497, 10);
+            btnLuuHopDong.Location = new Point(399, 8);
             btnLuuHopDong.Name = "btnLuuHopDong";
             btnLuuHopDong.Size = new Size(189, 30);
             btnLuuHopDong.TabIndex = 0;
@@ -348,20 +346,10 @@
             btnLuuHopDong.UseVisualStyleBackColor = true;
             btnLuuHopDong.Click += btnLuuHopDong_Click;
             // 
-            // btnInHopDong
-            // 
-            btnInHopDong.Location = new Point(302, 10);
-            btnInHopDong.Name = "btnInHopDong";
-            btnInHopDong.Size = new Size(189, 30);
-            btnInHopDong.TabIndex = 1;
-            btnInHopDong.Text = "In hợp đồng...";
-            btnInHopDong.UseVisualStyleBackColor = true;
-            btnInHopDong.Click += btnInHopDong_Click;
-            // 
             // btnThoat
             // 
             btnThoat.ForeColor = Color.Blue;
-            btnThoat.Location = new Point(692, 10);
+            btnThoat.Location = new Point(594, 8);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(189, 30);
             btnThoat.TabIndex = 2;
@@ -416,7 +404,6 @@
         private DataGridView dataGridView;
         private Panel panelBottom;
         private Button btnLuuHopDong;
-        private Button btnInHopDong;
         private Button btnThoat;
         private DataGridViewTextBoxColumn XeID;
         private DataGridViewTextBoxColumn TenXe;

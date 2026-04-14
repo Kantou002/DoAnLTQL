@@ -10,13 +10,13 @@ using QuanLyBanTraGopXeHonda.Data;
 
 namespace QuanLyBanTraGopXeHonda.Reports
 {
-    public partial class frmInHopDong : Form
+    public partial class frmInHoaDon : Form
     {
         QLBXDbContext context = new QLBXDbContext();
         string reportsFolder = Application.StartupPath.Replace("bin\\Debug\\net9.0-windows", "Reports");
         int id; // Mã hợp đồng cần in
 
-        public frmInHopDong(int maHopDong = 0)
+        public frmInHoaDon(int maHopDong = 0)
         {
             InitializeComponent();
             id = maHopDong;
